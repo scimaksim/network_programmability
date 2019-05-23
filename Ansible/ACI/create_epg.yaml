@@ -1,0 +1,29 @@
+##############################################################
+# Original Author: Hank Preston <hapresto@cisco.com>
+# Modified by: Maksim Nikiforov <maksim@redhat.com>
+##############################################################
+---
+- name: Example 3 - Creating EPGs
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars:
+    tenant: "{{ prefix }}_Tenant2"
+    ap: "Supply_Chain"
+    epgs:
+      - epg: "web"
+      - epg: "sql"
+
+   tasks:       
+    - name: Create EPGs
+      aci_epg:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ tenant }}"
+        ap: "{{ ap }}"
+        epg: "{{ item.epg }}"
+        description: "EPG Created Using Ansible"
+      with_items: "{{ epgs }}"
