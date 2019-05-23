@@ -3,7 +3,7 @@
 # Modified by: Maksim Nikiforov <maksim@redhat.com>
 ##############################################################
 ---
-- name: Example 1 - Managing Tenants
+- name: Example 1 - Creating Tenants
   hosts: apic
   connection: local
   gather_facts: False

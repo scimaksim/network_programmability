@@ -3,7 +3,7 @@
 # Modified by: Maksim Nikiforov <maksim@redhat.com>
 ##############################################################
 ---
-- name: Example 2 - Managing Application Profiles and EPGs
+- name: Example 2 - Creating Application Profiles
   hosts: apic
   connection: local
   gather_facts: False
@@ -26,15 +26,3 @@
         ap: "{{ ap }}"
         descr: "App Profile Created Using Ansible"
 
-    - name: Create EPGs
-      aci_epg:
-        host: "{{ inventory_hostname }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
-        state: "present"
-        validate_certs: False
-        tenant: "{{ tenant }}"
-        ap: "{{ ap }}"
-        epg: "{{ item.epg }}"
-        description: "EPG Created Using Ansible"
-      with_items: "{{ epgs }}"
