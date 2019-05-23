@@ -14,7 +14,7 @@
       - epg: "web"
       - epg: "sql"
 
-   tasks:       
+  tasks:       
     - name: Create EPGs
       aci_epg:
         host: "{{ inventory_hostname }}"
