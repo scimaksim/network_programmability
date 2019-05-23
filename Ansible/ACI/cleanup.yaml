@@ -1,0 +1,26 @@
+##############################################################
+# Original Author: Hank Preston <hapresto@cisco.com>
+# Modified by: Maksim Nikiforov <maksim@redhat.com>
+##############################################################
+---
+- name: Cleanup - Removing Tenants
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars:
+    tenants:
+      - "{{ prefix }}_Tenant1"
+      - "{{ prefix }}_Tenant2"
+      - "{{ prefix }}_Tenant3"
+      - "{{ prefix }}_Tenant4"
+
+  tasks:
+    - name: Delete Tenants
+      aci_tenant:
+        host: "{{ ansible_host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "absent"
+        validate_certs: False
+        tenant: "{{ item }}"
+      with_items: "{{ tenants }}"
