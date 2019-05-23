@@ -1,0 +1,25 @@
+##############################################################
+# Original Author: Hank Preston <hapresto@cisco.com>
+# Modified by: Maksim Nikiforov <maksim@redhat.com>
+##############################################################
+---
+- name: Example 1 - Managing Tenants
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars:
+    tenants:
+      - "{{ prefix }}_Tenant1"
+      - "{{ prefix }}_Tenant2"
+
+  tasks:
+    - name: Create Tenants
+      aci_tenant:
+        host: "{{ ansible_host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ item }}"
+        description: "Tenant Created Using Ansible"
+      with_items: "{{ tenants }}"
