@@ -3,22 +3,22 @@
 # Modified by: Maksim Nikiforov <maksim@redhat.com>
 ##############################################################
 ---
-- name: Creating Tenants
+- name: Create Application Tenant
   hosts: apic
   connection: local
   gather_facts: False
   vars_files:
     - vars/tenant_vars.yml
 
-
   tasks:
-    - name: Create Tenants
+    - name: Workflow Task 01 - Ensure Tenant Exists
       aci_tenant:
         host: "{{ inventory_hostname }}"
         username: "{{ username }}"
         password: "{{ password }}"
         state: "present"
         validate_certs: False
-        tenant: "{{ item }}"
+        tenant: "{{ tenant }}"
         description: "Tenant Created Using Ansible"
+        
 
