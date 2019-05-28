@@ -3,7 +3,7 @@
 # Modified by: Maksim Nikiforov <maksim@redhat.com>
 ##############################################################
 ---
-- name: Create VRFs
+- name: Create Tenant Contracts
   hosts: apic
   connection: local
   gather_facts: False
@@ -11,19 +11,16 @@
     - vars/tenant_vars.yml
 
   tasks:
-    - name: Workflow Task 6 - Ensure Filters Have Filter Entries
-      aci_filter_entry:
+    - name: Workflow Task 07 - Ensure Tenant Contracts Exist
+      aci_contract:
         host: "{{ inventory_hostname }}"
         username: "{{ username }}"
         password: "{{ password }}"
-        state: "present"
         validate_certs: False
+        state: "present"
         tenant: "{{ tenant }}"
-        filter: "{{ item.filter }}"
-        entry: "{{ item.entry }}"
-        ether_type: "ip"
-        ip_protocol: "{{ item.protocol }}"
-        dst_port_start: "{{ item.port }}"
-        dst_port_end: "{{ item.port }}"
-      with_items: "{{ filters }}"
+        contract: "{{ item.contract }}"
+        scope: "context"
+        description: "Contract Created Using Ansible"
+      with_items: "{{ contracts }}"
 

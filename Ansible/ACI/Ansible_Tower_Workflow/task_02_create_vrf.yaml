@@ -11,7 +11,7 @@
     - vars/tenant_vars.yml
 
   tasks:
-    - name: Workflow Task 2 - Ensure Tenant VRF Exists
+    - name: Workflow Task 02 - Ensure Tenant VRF Exists
       aci_vrf:
         host: "{{ inventory_hostname }}"
         username: "{{ username }}"

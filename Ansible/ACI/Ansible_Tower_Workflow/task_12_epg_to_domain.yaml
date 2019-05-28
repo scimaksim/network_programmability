@@ -3,7 +3,7 @@
 # Modified by: Maksim Nikiforov <maksim@redhat.com>
 ##############################################################
 ---
-- name: Create VRFs
+- name: Bind Domain to EPG
   hosts: apic
   connection: local
   gather_facts: False
@@ -11,19 +11,20 @@
     - vars/tenant_vars.yml
 
   tasks:
-    - name: Workflow Task 6 - Ensure Filters Have Filter Entries
-      aci_filter_entry:
+    - name: Workflow Task 12 - Ensure Domain Is Bound To EPG
+      aci_epg_to_domain:
         host: "{{ inventory_hostname }}"
         username: "{{ username }}"
         password: "{{ password }}"
-        state: "present"
         validate_certs: False
+        state: "present"
         tenant: "{{ tenant }}"
-        filter: "{{ item.filter }}"
-        entry: "{{ item.entry }}"
-        ether_type: "ip"
-        ip_protocol: "{{ item.protocol }}"
-        dst_port_start: "{{ item.port }}"
-        dst_port_end: "{{ item.port }}"
-      with_items: "{{ filters }}"
+        ap: "{{ ap }}"
+        epg: "{{ item.epg }}"
+        domain: "aci_ansible_lab"
+        domain_type: "vmm"
+        vm_provider: "vmware"
+        encap_mode: "auto"
+        encap: "{{ item.encap }}"
+      with_items: "{{ epgs }}"
 

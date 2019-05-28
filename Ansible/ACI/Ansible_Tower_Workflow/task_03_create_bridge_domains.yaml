@@ -3,7 +3,7 @@
 # Modified by: Maksim Nikiforov <maksim@redhat.com>
 ##############################################################
 ---
-- name: Create VRFs
+- name: Create Bridge Domain
   hosts: apic
   connection: local
   gather_facts: False
