@@ -1,0 +1,26 @@
+##############################################################
+# Original Author: Hank Preston <hapresto@cisco.com>
+# Modified by: Maksim Nikiforov <maksim@redhat.com>
+##############################################################
+---
+- name: Create Bridge Domain Subnets
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars_files:
+    - vars/tenant_vars.yml
+
+  tasks:
+    - name: Workflow Task 04 - Ensure Bridge Domains Have Subnets
+      aci_bd_subnet:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+        state: "present"
+        tenant: "{{ tenant }}"
+        bd: "{{ item.bd }}"
+        gateway: "{{ item.gateway }}"
+        mask: "{{ item.mask }}"
+        scope: "{{ item.scope }}"
+      with_items: "{{ bridge_domains }}"

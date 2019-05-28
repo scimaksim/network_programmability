@@ -1,0 +1,24 @@
+##############################################################
+# Original Author: Hank Preston <hapresto@cisco.com>
+# Modified by: Maksim Nikiforov <maksim@redhat.com>
+##############################################################
+---
+- name: Creating Tenants
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars_files:
+    - vars/tenant_vars.yml
+
+
+  tasks:
+    - name: Create Tenants
+      aci_tenant:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: "present"
+        validate_certs: False
+        tenant: "{{ item }}"
+        description: "Tenant Created Using Ansible"
+

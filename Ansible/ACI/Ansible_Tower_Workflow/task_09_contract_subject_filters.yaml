@@ -1,0 +1,26 @@
+##############################################################
+# Original Author: Hank Preston <hapresto@cisco.com>
+# Modified by: Maksim Nikiforov <maksim@redhat.com>
+##############################################################
+---
+- name: Create Contract Subject FIlters
+  hosts: apic
+  connection: local
+  gather_facts: False
+  vars_files:
+    - vars/tenant_vars.yml
+
+  tasks:
+    - name: Workflow Task 09 - Ensure Contract Subjects Have Filters
+      aci_contract_subject_to_filter:
+        host: "{{ inventory_hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        validate_certs: False
+        state: "present"
+        tenant: "{{ tenant }}"
+        contract: "{{ item.contract }}"
+        subject: "{{ item.subject }}"
+        filter: "{{ item.filter }}"
+      with_items: "{{ contracts }}"
+
