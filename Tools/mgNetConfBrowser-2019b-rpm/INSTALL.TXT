@@ -1,0 +1,3 @@
+For the detailed installation guidelines, please read
+the "Installing and Starting the Software" section in 
+the enclosed READ_ME.TXT file.

@@ -1,0 +1,29 @@
+APPLY FOR A 30-DAY EVALUATION license.key FILE
+
+The evaluation version of MG-SOFT's software products without
+a valid license.key file will operate in restricted mode,
+while some applications will not start at all. For efficient
+evaluation of MG-SOFT's software products, with most features
+enabled, we invite you to apply for a 30-day evaluation
+license key by submitting the on-line form at
+
+http://www.mg-soft.com/evalKeyReq.html
+
+or by contacting <sales@mg-soft.com>.
+
+Make sure to request evaluation license key file for the
+correct OS where you will be evaluating the software - we
+issue evaluation license key files for Windows, Linux, Mac OS X
+and Solaris operating systems. Note that for NETCONF and YANG
+software products you need license key file for "JAVA" and
+this license key file can then be used for running NETCONF
+and YANG software products on any OS that supports Java.
+
+Evaluation license key files are delivered by e-mail. For
+security reasons, we do not ship license keys to e-mail
+addresses at free or web-based e-mail providers! In order
+to receive a 30-day evaluation license key, provide your
+regular e-mail address!
+
+MG-SOFT reserves the right to refuse any evaluation license
+key application without notice.

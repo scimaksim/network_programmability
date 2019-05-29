@@ -1,0 +1,25 @@
+######
+#For RPM-based distributions (e.g. RHEL 8, Fedora) that support the dnf package manager
+#This playbooks retrieves and installs the MG-SOFT NETCONF Browser Professional Edition 
+#https://www.mg-soft.si/download.html?product=netconfbrowser
+######
+- hosts: localhost
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Download NETCONF Browser Professional Edition from MG-SOFT website
+      get_url:
+        url: https://www1.mg-soft.com/files/mgNetConfBrowser-2019b-rpm.tar.gz
+        dest: /tmp
+    
+    - name: Extract the contents of the downloaded archive
+      unarchive: 
+        src: /tmp/mgNetConfBrowser-2019b-rpm.tar.gz
+        dest: /tmp/
+
+    - name: Install the extracted RPM
+      yum:
+        name: /tmp/mgNetConfBrowser-2019b-rpm/mgNetConfBrowser_2019-7.3-8.x86_64.rpm
+        state: present
+    

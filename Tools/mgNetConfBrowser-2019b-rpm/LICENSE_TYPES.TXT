@@ -1,0 +1,152 @@
+This is the "License_Types.txt" document accompanying MG-SOFT's products.
+
+Copyright (C) 1995-2018  MG-SOFT Corporation.
+All rights reserved.
+
+=============================================================================
+Table of contents
+-----------------
+
+1. Introduction
+2. End User software licenses
+3. Developer licenses, Redistributable run-time licenses and OEM licenses
+4. License renewals and migrations
+5. Delivery of licenses
+6. 30-day Evaluation license
+
+
+=============================================================================
+1. Introduction
+---------------
+
+Each installed copy of MG-SOFT's software product must be covered by an
+appropriate software license.
+
+MG-SOFT offers End-user software licenses, Developer's licenses,
+Redistributable run-time licenses, and OEM licenses. Besides, evaluation
+licenses are available for 30-day trials.
+
+Software licenses can be ordered directly from MG-SOFT Corporation or from
+MG-SOFT's resellers.
+
+For additional information please contact MG-SOFT sales team at
+<sales@mg-soft.si>.
+
+
+=============================================================================
+2. End User software licenses
+-----------------------------
+
+MG-SOFT issues a unique license.key file for each ordered software license.
+The user then applies the license.key file to the installed software. Once
+the software license is applied, the licensed software product displays
+'Single user license' and its unique serial number in the About window. Each
+license entitles the user to install and use the licensed software on only
+one computer, i.e., each license.key file can be applied to at most one copy
+of the installed software.
+
+MG-SOFT does not support floating licenses. Due to the nature of the
+software, the software does not contain any functions for floating license
+checking. Many users install the software on their laptops and then use it
+somewhere in the field. It might be inconvenient for them if the software was
+trying to connect to some kind of licensing server in order to determine if
+it is eligible to start-up or not, depending on the current number of other
+users.
+
+Without signing an appropriate software licensing agreement with MG-SOFT it
+is not permitted to bundle any MG-SOFT's products and license.key files with
+your products and ship them to your customers or end-users.
+
+
+=============================================================================
+3. Developer licenses, Redistributable run-time licenses and OEM licenses
+-------------------------------------------------------------------------
+
+When purchasing a license for an MG-SOFT's software development kit, you
+receive a license for one developer and certain number of redistributable
+run-time licenses ('certain number' depends on the licensed software
+development kit).
+
+This means that one software developer can install the licensed version of
+the software development kit to his or her computer. The redistributable
+run-time licenses can be deployed in the development environment in order
+to test and debug the product through its development stages. After the
+product is developed, the redistributable run-time licenses can be deployed
+(bundled with your application) either within your company (i.e., if you were
+developing an in-house tool) and/or sold to your end users (again, bundled
+with your application). You are eligible to redistribute in such manner at
+most as many copies of MG-SOFT's run-time modules as you have received
+redistributable run-time licenses along with the software development kit.
+To deploy or redistribute more than such number of copies of MG-SOFT's
+run-time modules please contact MG-SOFT sales team and order an adequate
+number of additional redistributable run-time licenses. You are not permited
+to redistribute the evaluation version of MG-SOFT's run-time modules.
+
+If you plan to deploy or resell large quantities of MG-SOFT's run-time
+modules bundled with your value-added application, you may wish to consider
+signing the OEM license agreement, under which there are no restrictions on
+the number of the redistributed MG-SOFT's run-time modules bundled with your
+value-added application. Please contact MG-SOFT sales team to receive
+additional information on royalty-based and OEM licensing for desired
+MG-SOFT's products.
+
+
+=============================================================================
+4. License renewals and migrations
+----------------------------------
+
+Users with outdated software licenses have an option to renew their license
+so that they will be able to use the most recent release of the licensed
+software.
+
+Users who would like to use a different edition of the licensed software have
+an option to migrate their license to a license that will support the desired
+edition of the software product.
+
+Renewed or migrated license does not give you an additional license. Instead,
+it only replaces your current license with a new license. After renewing or
+migrating a license, your old license is legally revoked and must not be used
+anymore.
+
+
+=============================================================================
+5. Delivery of licenses
+-----------------------
+
+MG-SOFT can deliver ordered software licenses either electronically or
+physically.
+
+When delivered electronically, MG-SOFT supplies ordered software licenses
+packed in zip (or tar.gz) files attached to an e-mail message. The user needs
+to download the software installer from the provided URL at MG-SOFT's web
+site.
+
+When delivered physically, MG-SOFT supplies one USB flash card containing the
+software installer along with all ordered license.key files. If you wish to
+receive software licenses on two or more USB flash cards, please contact MG-
+SOFT sales team prior to placing the order.
+
+
+=============================================================================
+6. 30-day Evaluation license
+----------------------------
+
+Most MG-SOFT's software products are available from MG-SOFT's web site for a
+30-day evaluation, so that potential customers may try using the software
+before ordering the regular software licenses. Under the 30-day evaluation
+license the user should determine the suitability of the evaluated software
+product, its available functions, performance capabilities and similar
+features. Under the 30-day evaluation license the user is not permitted to
+use the evaluated product for any kind of commercial purposes. More
+specifically, with MG-SOFT's products running under the evaluation license it
+is not permitted to test or debug equipment for commercial purposes, it is
+not permitted to provide commercial training services, nor any similar
+commercial activity. Such activites can be performed only after obtaining the
+licensed version of the software.
+
+If the user determines the suitability of the evaluated software product, the
+regular software license should be obtained. Otherwise, the user must
+uninstall and stop using the evaluation software.
+
+
+=============================================================================
