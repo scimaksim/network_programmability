@@ -18,6 +18,11 @@
         src: /tmp/mgNetConfBrowser-2019b-rpm.tar.gz
         dest: /tmp/
 
+    - name: Ensure OpenJDK is present
+      yum: 
+        name: java-11-openjdk
+        state: present
+
     - name: Install the extracted RPM
       yum:
         name: /tmp/mgNetConfBrowser-2019b-rpm/mgNetConfBrowser_2019-7.3-8.x86_64.rpm
