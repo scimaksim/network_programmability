@@ -1,0 +1,24 @@
+######
+#For RPM-based distributions (e.g. RHEL, Fedora)
+#This playbooks retrieves and installs the MG-SOFT NETCONF Browser Professional Edition 
+#https://www.mg-soft.si/download.html?product=netconfbrowser
+######
+- hosts: localhost
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Install platform-python-devel
+      yum:
+        name: platform-python-devel
+        state: present
+    
+    - name: Install gns3-server using pip
+      pip:
+        name: gns3-server
+        state: latest
+    
+    - name: Install gns3-gui using pip
+      pip:
+        name: gns3-gui
+        state: latest

@@ -1,5 +1,5 @@
 ######
-#For RPM-based distributions (e.g. RHEL 8, Fedora) that support the dnf package manager
+#For RPM-based distributions (e.g. RHEL, Fedora)
 #This playbooks retrieves and installs the MG-SOFT NETCONF Browser Professional Edition 
 #https://www.mg-soft.si/download.html?product=netconfbrowser
 ######
