@@ -1,7 +1,7 @@
 ######
 #For RPM-based distributions (e.g. RHEL, Fedora)
-#This playbooks retrieves and installs the MG-SOFT NETCONF Browser Professional Edition 
-#https://www.mg-soft.si/download.html?product=netconfbrowser
+#This playbooks retrieves and installs GNS3 using pip
+#https://www.gns3.com/
 ######
 - hosts: localhost
   become: yes
