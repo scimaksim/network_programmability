@@ -1,3 +1,8 @@
+##############################################################
+# Written by: Maksim Nikiforov <maksim@redhat.com>
+# The sandbox for Cisco DNA Center is available at 
+# https://developer.cisco.com/site/sandbox/
+##############################################################
 ---
 - hosts: localhost
   connection: local
