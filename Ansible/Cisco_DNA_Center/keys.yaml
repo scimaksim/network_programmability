@@ -1,3 +1,4 @@
 # Add your Basic Auth Base64 encoding of <username>:<password>
-# This particular encoding points to Cisco's DevNet sandbox
-CiscoDNA_key: Basic ZGV2bmV0dXNlcjpDaXNjbzEyMyE=
+# For testing, you may use Cisco's DevNet sandbox
+# https://developer.cisco.com/site/sandbox/
+CiscoDNA_key: Basic (insert key here)
