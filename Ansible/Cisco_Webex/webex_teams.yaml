@@ -1,0 +1,33 @@
+##############################################################
+# Written by: Maksim Nikiforov <maksim@redhat.com>
+# Documentation for Cisco Webex is available at 
+# https://developer.webex.com/docs/api/v1/rooms/list-rooms
+##############################################################
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - keys.yaml
+
+  vars:
+    # Booleans to control message destinations
+    post_to_room_prod: true
+    post_to_room_dev: false
+    # Room IDs
+    room_prod_id: "{{ room_prod_id }}"
+    room_dev_id: "{{ room_dev_id }}"
+  
+  tasks:
+  - name: Post a custom notification to Webex Teams room(s)
+    uri:
+      url: https://api.ciscospark.com/v1/messages
+      body: { 'roomId' : '{{ item.token }}', 'markdown': "My unique notification!"}
+      body_format: json
+      headers:
+        Authorization: "Bearer {{ personal_access_token }}"
+      method: POST
+    when: item.when
+    with_items:
+    - { token: "{{ room_prod_id }}", when: "{{ post_to_room_prod }}" } 
+    - { token: "{{ room_dev_id }}", when: "{{ post_to_room_dev }}" } 
