@@ -1,0 +1,37 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - keys.yaml
+
+  tasks:
+    - name: Authentication API
+      uri: 
+        url: https://sandboxdnac.cisco.com/dna/system/api/v1/auth/token
+        method: POST 
+        headers: 
+          Content-Type: application/json
+          Authorization: "{{ CiscoDNA_key }}"
+      register: authorization
+
+    # Print authorization token for troubleshooting
+    #- name: Authentication status
+    #  debug:
+    #    msg: "{{ authorization.json.Token }}"
+
+    - name: Get device count
+      uri:
+        url: https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device/count
+        method: GET
+        headers:
+          X-Auth-Token: "{{ authorization.json.Token }}"
+      register: network_device_count
+
+    - name: Print device count
+      debug:
+        msg: "Number of devices: {{ network_device_count.json.response }}"
+
+
+
+
