@@ -42,8 +42,8 @@ def retrieve_projects():
         for project in projects_response:
             if project['status'] == "opened":
                 open_id = str(project['project_id'])
-    elif projects_response.status_code == 404:
-        open_id = str('Server cannot reach the GNS3 API.')
+    elif projects_request.status_code == 404:
+        open_id = str('Server cannot reach the GNS3 projects API.')
 
     return open_id
 
@@ -65,8 +65,9 @@ def retrieve_nodes():
             if group not in inventory:
                 inventory[group] = {'hosts': [], 'vars': {}}
                 inventory[group]['hosts'].append(host)
-
-    print(json.dumps(inventory, indent=4))
+        print(json.dumps(inventory, indent=4))
+    elif nodes_request.status_code == 404:
+        print('Server cannot reach the GNS3 nodes API.')
 
 
 retrieve_nodes()
