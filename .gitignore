@@ -12,8 +12,8 @@ __pycache__/
 *.so
 
 # Directories
-*venv/
-*.idea
+venv/
+.idea
 
 # Distribution / packaging
 .Python
