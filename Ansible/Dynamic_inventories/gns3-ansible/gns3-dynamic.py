@@ -19,36 +19,55 @@ import requests
 import re
 
 # Set location for the INI file on the Ansible Tower server
-#config_file = '/etc/ansible/gns3.ini'
-config_file = '/home/maksim/Documents/gns3-ansible/gns3.ini'
-config = configparser.ConfigParser()
+config_file = '/etc/ansible/gns3.ini'
 
 # Retrieve the contents of the INI file
+config = configparser.ConfigParser()
 config.read_file(open(config_file))
 
 gns3_server_address = config.get('gns3', 'gns3_server_address')
 gns3_server_port = config.get('gns3', 'gns3_server_port')
-# gns3_project_uid =
 
-gns3_api_url = "http://"+gns3_server_address+":"+gns3_server_port+"/v2/projects/ae9d8bb9-5280-4038-8ac4-a5708593e0ca" \
-                                                                  "/nodes"
-response = requests.get(gns3_api_url)
-data = response.json()
-
-inventory = {'_meta': {'hostvars': {}}}
+# URL for the GNS3 projects API (documentation available at https://gns3-server.readthedocs.io)
+projects_api_link = "http://"+gns3_server_address+":"+gns3_server_port+"/v2/projects"
 
 
-if response.status_code == 200:
-    for node in data:
-        group = node['name']
-        host = node['name']
-        dict1 = {'hostname': host}
-        if group not in inventory:
-            inventory[group] = {'hosts': [], 'vars': {}}
-        inventory[group]['hosts'].append(host)
+# Query the projects API for existing GNS3 projects
+def retrieve_projects():
+    global open_id
+    projects_request = requests.get(projects_api_link)
+    projects_response = projects_request.json()
+
+    if projects_request.status_code == 200:
+        for project in projects_response:
+            if project['status'] == "opened":
+                open_id = str(project['project_id'])
+    elif projects_response.status_code == 404:
+        open_id = str('Server cannot reach the GNS3 API.')
+
+    return open_id
+
+
+# Form the URL for the nodes API
+project_id = retrieve_projects()
+nodes_api_link = "http://"+gns3_server_address+":"+gns3_server_port+"/v2/projects/"+project_id+"/nodes"
+
+def retrieve_nodes():
+    nodes_request = requests.get(nodes_api_link)
+    nodes_response = nodes_request.json()
+
+    inventory = {'_meta': {'hostvars': {}}}
+
+    if nodes_request.status_code == 200:
+        for node in nodes_response:
+            group = node['name']
+            host = node['name']
+            if group not in inventory:
+                inventory[group] = {'hosts': [], 'vars': {}}
+                inventory[group]['hosts'].append(host)
 
     print(json.dumps(inventory, indent=4))
 
-elif response.status_code == 404:
-    print('Not Found.')
+
+retrieve_nodes()
 
