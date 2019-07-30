@@ -28,47 +28,42 @@ config.read_file(open(config_file))
 gns3_server_address = config.get('gns3', 'gns3_server_address')
 gns3_server_port = config.get('gns3', 'gns3_server_port')
 
-# URL for the GNS3 projects API (documentation available at https://gns3-server.readthedocs.io)
-projects_api_link = "http://"+gns3_server_address+":"+gns3_server_port+"/v2/projects"
+
+class GNS3Inventory:
+    def __init__(self, gns3_address, gns3_port):
+        self.gns3_address = gns3_address
+        self.gns3_port = gns3_port
+        self.inventory = {'_meta': {'hostvars': {}}}
+        self.api_link = ("http://"+self.gns3_address+":"+self.gns3_port+"/v2/projects")
+        self.retrieve_projects()
+
+    def retrieve_projects(self):
+        projects_query = requests.get(self.api_link)
+        projects_response = projects_query.json()
+
+        if projects_query.status_code == 200:
+            for project in projects_response:
+                if project['status'] == "opened":
+                    self.retrieve_nodes(project['project_id'])
+        elif projects_query.status_code == 404:
+            print('Server cannot reach the GNS3 projects API.')
+
+    def retrieve_nodes(self, project_id):
+        nodes_request = requests.get(self.api_link + "/"+project_id+"/nodes")
+        nodes_response = nodes_request.json()
+
+        if nodes_request.status_code == 200:
+            for node in nodes_response:
+                group = node['name']
+                host = node['name']
+                if group not in self.inventory:
+                    self.inventory[group] = {'hosts': [], 'vars': {}}
+                    self.inventory[group]['hosts'].append(host)
+            print(json.dumps(self.inventory, indent=4))
+        elif nodes_request.status_code == 404:
+            print('Server cannot reach the GNS3 nodes API.')
 
 
-# Query the projects API for existing GNS3 projects
-def retrieve_projects():
-    global open_id
-    projects_request = requests.get(projects_api_link)
-    projects_response = projects_request.json()
+GNS3Inventory(gns3_server_address, gns3_server_port)
 
-    if projects_request.status_code == 200:
-        for project in projects_response:
-            if project['status'] == "opened":
-                open_id = str(project['project_id'])
-    elif projects_request.status_code == 404:
-        open_id = str('Server cannot reach the GNS3 projects API.')
-
-    return open_id
-
-
-# Form the URL for the nodes API
-project_id = retrieve_projects()
-nodes_api_link = "http://"+gns3_server_address+":"+gns3_server_port+"/v2/projects/"+project_id+"/nodes"
-
-def retrieve_nodes():
-    nodes_request = requests.get(nodes_api_link)
-    nodes_response = nodes_request.json()
-
-    inventory = {'_meta': {'hostvars': {}}}
-
-    if nodes_request.status_code == 200:
-        for node in nodes_response:
-            group = node['name']
-            host = node['name']
-            if group not in inventory:
-                inventory[group] = {'hosts': [], 'vars': {}}
-                inventory[group]['hosts'].append(host)
-        print(json.dumps(inventory, indent=4))
-    elif nodes_request.status_code == 404:
-        print('Server cannot reach the GNS3 nodes API.')
-
-
-retrieve_nodes()
 
