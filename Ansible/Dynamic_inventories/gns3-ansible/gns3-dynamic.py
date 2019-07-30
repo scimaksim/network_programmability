@@ -38,6 +38,7 @@ class GNS3Inventory:
         self.retrieve_projects()
 
     def retrieve_projects(self):
+        """Identify the ID of the open GNS3 project"""
         projects_query = requests.get(self.api_link)
         projects_response = projects_query.json()
 
@@ -49,6 +50,7 @@ class GNS3Inventory:
             print('Server cannot reach the GNS3 projects API.')
 
     def retrieve_nodes(self, project_id):
+        """Retrieve nodes from the open project"""
         nodes_request = requests.get(self.api_link + "/"+project_id+"/nodes")
         nodes_response = nodes_request.json()
 
