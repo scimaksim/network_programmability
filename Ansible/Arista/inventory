@@ -1,8 +1,9 @@
 [eos]
-192.168.122.106
-192.168.122.107
-192.168.122.108
-192.168.122.109
+veos01 ansible_host=192.168.122.106
+veos02 ansible_host=192.168.122.107
+veos03 ansible_host=192.168.122.108
+veos04 ansible_host=192.168.122.109
 
-[vars:eos]
+[eos:vars]
 ansible_network_os = eos
+ansible_user=admin
